@@ -23,9 +23,8 @@ WHERE f.length > (SELECT AVG(length) from film);
 
 ### Задание 3
 
-SELECT month(date(payment_date)), sum(amount), count(rental_id)  
-FROM payment p  
-GROUP BY month(date(payment_date))  
+SELECT date_format(payment_date, "%m-%Y"), count(payment_id), sum(amount)  
+FROM payment WHERE date_format(payment_date, "%m") GROUP BY date_format(payment_date, "%m-%Y")  
 ORDER BY sum(amount) DESC  
 LIMIT 1;  
 
